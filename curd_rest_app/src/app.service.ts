@@ -30,6 +30,26 @@ export class AppService {
         throw error; // Rethrow the error to be handled by the caller
       }
     }
-  
+
+
+    //update data from database
+
+    async updateUser(id: string, data: any): Promise<User | null> {
+      try {
+        const updatedUser = await this.userModel.findByIdAndUpdate(id, data,{new:true});
+        return updatedUser;
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
+    }
+
+
+    //Delete the data from database 
+    async DeleteUser(id: string){
+
+      return this.userModel.findByIdAndDelete(id)
+
+    }
 
 }
